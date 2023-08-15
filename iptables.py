@@ -5,6 +5,20 @@ from colorama import Fore, Style
 def print_colored_message(message, color):
     typer.echo(f"{color}{message}{Style.RESET_ALL}")
 
+def afficher_iptable():
+    print_colored_message("""
+      ___             ___             ___      ___
+     |ii|           __|t|___ _______  !b|      |l!     _______  ________
+	  ___    ______ /!|t?\|\ \#$%^%#\ 1b|      |l!    /!$#%^*/  \#$#gFG/
+      ii|  |ppppp@!\  |t|     ____|a| |b|____  |l!    !e/   #$  !s|____
+      ii|  |p/    pp! |t|    /a|!#$!! 1bb343"\ |l!    !Q$%^@%|  /#$#hFG\     
+      ii|_ |p/    pp! vt|___ !#!__|a| !b"___$# |l1___ !e/_____  ______!s|
+      iiii/|p/!@#pp/  |t?@#$ \%$#@#"/ |b3#$5#/ \@%65/ \eaq346/  \#$#fFG/
+     	   |p/
+     	   |p/
+     	   |p/
+                """, Fore.YELLOW)
+
 def choice_0():
     list_rule = ["sudo", "iptables", "-L", "-n", "-v"]    
     try:
@@ -213,6 +227,7 @@ def delete_one_rule(rule_number):
 
 def main():
     if typer.confirm("Want to add or delete rules on your firewall ? "):
+        afficher_iptable()
         choice = 0
         while choice != 10:
             print("""
@@ -262,12 +277,3 @@ def main():
 
 if __name__ == "__main__":
     typer.run(main)
-
-"""
-    > stdout=subprocess.PIPE: Cela redirige la sortie standard (stdout) du processus exécuté vers un objet de type PIPE. 
-    Cela signifie que la sortie de la commande sera capturée et stockée dans l'objet stdout pour être utilisée ultérieurement.
-    > stderr=subprocess.PIPE: Cela redirige la sortie d'erreur (stderr) du processus exécuté vers un objet de type PIPE. 
-    Cela permet de capturer les éventuelles erreurs générées par la commande.
-    > stdout, stderr = process.communicate(): Cette ligne exécute réellement la commande et capture à la fois la sortie standard (stdout) et la sortie d'erreur (stderr) dans les variables stdout et stderr.
-    communicate() attend que le processus se termine et collecte ses sorties.
-"""
